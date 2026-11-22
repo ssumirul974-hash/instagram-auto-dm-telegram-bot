@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: ig-dm-telegram-bot
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python bot.py
+    envVars:
+      - key: TELEGRAM_TOKEN
+        sync: false
+      - key: ADMIN_IDS
+        sync: false
+      - key: ENCRYPTION_KEY
+        sync: false
+      - key: DAILY_LIMIT
+        value: "40"
+      - key: TZ_NAME
+        value: Asia/Kolkata
+    healthCheckPath: /
+      - key: MAX_ACCOUNTS
+        value: "3"
+      - key: REQUIRE_APPROVAL
+        value: "0"
+      - key: DEVELOPER_NAME
+        value: Aditya
+      - key: COMMENT_LIMIT
+        value: "60"
